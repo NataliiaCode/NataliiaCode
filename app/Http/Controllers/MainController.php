@@ -36,4 +36,27 @@ class MainController extends Controller
         // dump($request);
         return 'sendEmail';
     }
+
+    public function registration()
+    {
+        return view('registration');
+    }
+
+    // Функція форми реєстрації
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:5',
+            'email' => 'required|email',
+            'username' => 'required|min:5',
+            'password' => 'required|min:5',
+            'password_confirmation' => 'required|same:password',
+
+        ]);
+
+
+        // return 'register';
+        dd($request->all());
+    }
 }

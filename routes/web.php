@@ -25,6 +25,8 @@ Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('contacts-us', [MainController::class, 'contacts'])->name('contacts');
 Route::post('contacts-us', [MainController::class, 'sendEmail'])->name('sendEmail');
 
+Route::get('registration', [MainController::class, 'registration'])->name('registration');
+Route::post('registration', [MainController::class, 'register'])->name('register');
 
-// Route::get('news', [NewsController::class, 'index']);
+
 Route::get('news', [NewsController::class, 'index'])->name('news');
