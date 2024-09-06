@@ -42,6 +42,19 @@
                             href="{{ route('registration') }}">Registration</a>
                     </li>
 
+                    <li>
+                        <a class="nav-link active" aria-current="page"
+                            href="{{ route('categories.index') }}">Categories</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="{{ route('reviews.index') }}">Reviews</a>
+                    </li>
+
+
+                </ul>
+
+
 
 
             </div>
