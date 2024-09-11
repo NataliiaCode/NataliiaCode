@@ -20,7 +20,17 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->description }}</td>
-                    <td class="text-center">
+                    <td class="d-flex justify-content-center align-items-center">
+
+                        <a href="{{ route('categories.edit', $category) }}" class="btn btn-warning btn-sm me-2">Edit</a>
+
+
+                        <form action="{{ route('categories.destroy', $category) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+
 
                     </td>
                 </tr>

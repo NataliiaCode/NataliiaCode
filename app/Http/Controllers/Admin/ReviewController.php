@@ -40,7 +40,7 @@ class ReviewController extends Controller
 
         $request->validate([
             'author' => 'required|string|min:2|max:32',
-            'review' => 'required|string|min:5|max:255',
+            'comment' => 'required|string|min:5|max:255',
             'rating' => 'required|integer|min:0|max:5',
 
 
@@ -48,12 +48,12 @@ class ReviewController extends Controller
         //створення нової моделі 
         $review = new Review();
         $review->author = $request->author;
-        $review->review = $request->review;
+        $review->comment = $request->comment;
         $review->rating = $request->rating;
         $review->save();
 
 
-        return redirect()->route('reviews.index')->with('success', 'Відгук додано');
+        return redirect()->route('reviews.index');
     }
 
     /**
@@ -73,9 +73,10 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Review $review)
+
     {
-        //
+        return view('admin.reviews.edit', compact('review'));
     }
 
     /**
@@ -85,9 +86,22 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Review $review)
     {
-        //
+
+        $request->validate([
+            'author' => 'required|string|min:2|max:32',
+            'comment' => 'required|string|min:5|max:255',
+
+
+            'rating' => 'required|integer|min:0|max:5',
+
+        ]);
+        $review->author = $request->author;
+        $review->comment = $request->comment;
+        $review->rating = $request->rating;
+        $review->save();
+        return redirect()->route('reviews.index');
     }
 
     /**
@@ -96,8 +110,10 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Review $review)
     {
-        //
+
+        $review->delete();
+        return redirect()->route('reviews.index');
     }
 }

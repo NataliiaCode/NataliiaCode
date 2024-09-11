@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\TourController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
@@ -36,4 +37,5 @@ Route::get('news', [NewsController::class, 'index'])->name('news');
 
 Route::resource('admin/categories', CategoryController::class);
 
+Route::resource('admin/tours', TourController::class);
 Route::resource('admin/reviews', ReviewController::class);

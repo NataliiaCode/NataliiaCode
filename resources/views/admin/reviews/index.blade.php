@@ -3,28 +3,33 @@
 @section('content')
     <h1>Reviews</h1>
 
-    <a href="{{ route('reviews.create') }}" class="btn btn-primary my-3">Create Reviews</a>
+    <a href="{{ route('reviews.create') }}" class="btn btn-primary my-3">Create</a>
 
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th scope="col">Автор</th>
-                <th scope="col">Відгук</th>
-                <th scope="col" class="text-center">Оцінка</th>
-                <th scope="col" class="text-center">Дії</th>
+                <th scope="col">Author</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Rating</th>
+                <th scope="col" class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($reviews as $review)
                 <tr>
                     <td>{{ $review->author }}</td>
-                    <td>{{ $review->review }}</td>
-                    <td class="text-center">{{ $review->rating }}</td>
-                    <td class="text-center">
-
+                    <td>{{ $review->comment }}</td>
+                    <td>{{ $review->rating }}</td>
+                    <td class="d-flex justify-content-center align-items-center">
+                        <a href="{{ route('reviews.edit', $review) }}" class="btn btn-warning btn-sm me-2">Edit</a>
+                        <form action="{{ route('reviews.destroy', $review) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-@endSection
+@endsection

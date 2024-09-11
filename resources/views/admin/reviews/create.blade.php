@@ -29,18 +29,20 @@
                             </div>
 
                             <div class="mt-3">
-                                <label for="review">Review</label>
-                                <input type="text" name="review" id="review"
-                                    class="form-control tb @error('review') is-invalid @enderror"
-                                    value="{{ old('review') }}">
+                                <label for="comment">Comment</label>
+                                <input type="text" name="comment" id="comment"
+                                    class="form-control tb @error('comment') is-invalid @enderror"
+                                    value="{{ old('comment') }}">
 
-                                @error('review')
+                                @error('comment')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
 
                             </div>
+
+
 
                             <div class="mt-3">
                                 <label for="rating">Rating</label>

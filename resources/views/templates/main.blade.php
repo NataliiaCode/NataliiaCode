@@ -51,6 +51,11 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('reviews.index') }}">Reviews</a>
                     </li>
 
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="{{ route('tours.index') }}">Tours</a>
+                    </li>
+
+
 
                 </ul>
 
