@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class TourController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.tours.create', compact('categories'));
     }
 
     /**
@@ -37,8 +39,29 @@ class TourController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $tour = Tour::create($request->all());
+
+        if ($request->image) {
+
+            $image = 'storage/' . $request->file('image')->store('public/images');
+            // $request->merge(['image' => $image]);
+
+            $tour->image = $image;
+            $tour->save();
+        }
+
+
+
+        return redirect()->route('tours.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -48,7 +71,8 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        //
+        // return view('tours.show', compact('tour'));
+        return view('admin.tours.show', compact('tour')); // Правильний шлях до шаблону
     }
 
     /**
@@ -82,6 +106,7 @@ class TourController extends Controller
      */
     public function destroy(Tour $tour)
     {
-        //
+        $tour->delete();
+        return redirect()->route('tours.index');
     }
 }

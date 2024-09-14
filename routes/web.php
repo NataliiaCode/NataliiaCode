@@ -24,6 +24,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 
+
+
+
+
 // обробити форму
 Route::get('contacts-us', [MainController::class, 'contacts'])->name('contacts');
 Route::post('contacts-us', [MainController::class, 'sendEmail'])->name('sendEmail');
@@ -38,4 +42,7 @@ Route::get('news', [NewsController::class, 'index'])->name('news');
 Route::resource('admin/categories', CategoryController::class);
 
 Route::resource('admin/tours', TourController::class);
+
+
+
 Route::resource('admin/reviews', ReviewController::class);

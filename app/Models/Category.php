@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    
+
+    function tours()
+    {
+        return $this->hasMany(Tour::class);
+    }
 }
+
+

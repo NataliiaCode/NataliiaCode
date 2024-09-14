@@ -1,11 +1,11 @@
 @extends('templates.main')
 
 @section('content')
-    <h1>Edit Category {{ $category->name }}</h1>
+    <h1>Edit Tour {{ $category->name }}</h1>
 
 
 
-    <form action="{{ route('categories.update', $category->id) }}" method="POST">
+    <form action="{{ route('tours.update', $category->id) }}" method="POST">
         @method('PUT')
 
 
@@ -15,7 +15,8 @@
             <label for="name">Name</label>
             <input type="text" name="name" id="name"
                 class="form-control 
-            tb @error('name') is-invalid @enderror" value="{{ old('name', $category->name) }}">
+            tb @error('name') is-invalid @enderror"
+                value="{{ old('name', $category->name) }}">
 
             @error('name')
                 <div class="invalid-feedback">
@@ -27,8 +28,10 @@
 
         <div class="mt-3">
             <label for="description">Description</label>
-            <input type="text" name="description" id="description" class="form-control
-            tb @error('description') is-invalid @enderror" value="{{ old('description', $category->description) }}">
+            <input type="text" name="description" id="description"
+                class="form-control
+            tb @error('description') is-invalid @enderror"
+                value="{{ old('description', $category->description) }}">
         </div>
 
 
@@ -38,7 +41,7 @@
             </div>
         @enderror
 
-        
+
 
         <div class="mt-3">
             <button type="submit" class="btn btn-primary">Create</button>

@@ -11,6 +11,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
+                <th>Tours</th>
                 <th scope="col" class="text-center">Actions</th>
             </tr>
         </thead>
@@ -19,7 +20,15 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $category->name }}</td>
+                    {{-- <td>{{ $category->name }} {{ $category->tours_count }}</td> --}}
                     <td>{{ $category->description }}</td>
+                    <td>
+                        @foreach ($category->tours as $tour)
+                            <p>{{ $tour->name }}</p>
+                        @endforeach
+
+
+                    </td>
                     <td class="d-flex justify-content-center align-items-center">
 
                         <a href="{{ route('categories.edit', $category) }}" class="btn btn-warning btn-sm me-2">Edit</a>

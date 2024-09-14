@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Tour;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -15,8 +17,13 @@ class MainController extends Controller
         $title = 'Home page';
         $subtitle = '<i>Welcom</i>';
         $users = ['Tom', 'Bob', 'Tim'];
+        $categories = Category::all(); // Додайте цю строку, щоб отримати дані з моделі Category
+        $tours = Tour::all(); // Додайте цю строку, щоб отримати дані з моделі Tour
 
-        return view('index', compact('title', 'subtitle', 'users'));
+
+
+        // return view('index', compact('title', 'subtitle', 'users'));
+        return view('index', compact('title', 'subtitle', 'users', 'categories', 'tours')); // Додайте 'categories' до compact
     }
 
     public function contacts()

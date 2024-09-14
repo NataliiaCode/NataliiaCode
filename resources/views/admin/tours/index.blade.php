@@ -13,6 +13,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Category</th>
+                <th scope="col">Price</th>
+
 
 
                 <th scope="col" class="text-center">Actions</th>
@@ -22,19 +24,18 @@
             @foreach ($tours as $tour)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $tour->image }}</td>
-                    <td>{{ $tour->name }}</td>
-                    <td>{{ $tour->description }}</td>
-                    <td>{{ $tour->category->name }}</td>
+
                     <td>
-                        {{-- як вивести назву категорією? --}}
 
-
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                            Autem neque inventore eligendi dolorem, minus, dolor vero saepe sit cupiditate atque suscipit
-                            ratione labore ex perspiciatis dicta molestiae sequi mollitia blanditiis.</p>
-
+                        <img src="{{ asset($tour->image) }}" alt="{{ $tour->name }}" width="100">
                     </td>
+                    <td>{{ $tour->name }}</td>
+                    <td>{{ $tour->short_description }}</td>
+                    <td>{{ $tour->category->name }}</td>
+
+                    <td>{{ $tour->price }} $</td>
+
+
 
                     <td class="d-flex justify-content-center align-items-center">
 
