@@ -37,12 +37,26 @@ Route::post('registration', [MainController::class, 'register'])->name('register
 
 
 Route::get('news', [NewsController::class, 'index'])->name('news');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 
-Route::resource('admin/categories', CategoryController::class);
+// Додаємо маршрут для перегляду детальної інформації про відгук
+Route::get('/reviews', [ReviewController::class, 'show'])->name('reviews.show');
 
-Route::resource('admin/tours', TourController::class);
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+
+// Деталі про тур
+Route::get('/tours/{tour}', [TourController::class, 'show'])->name('tour.show');
 
 
 
-Route::resource('admin/reviews', ReviewController::class);
+Route::resource('admin/categories', CategoryController::class)->middleware('auth');
+
+Route::resource('admin/tours', TourController::class)->middleware('auth');
+
+
+
+Route::resource('admin/reviews', ReviewController::class)->middleware('auth');
+
+Auth::routes();

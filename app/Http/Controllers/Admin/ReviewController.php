@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
+use App\Models\Tour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -15,7 +17,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::all();
+        // $reviews = Review::all();
+        $reviews = Review::with('tour')->get(); // Завантаження турів для кожного відгуку
         return  view('admin.reviews.index', compact('reviews'));
     }
 
@@ -26,7 +29,9 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('admin.reviews.create');
+        // return view('admin.reviews.create');
+        $tours = Tour::all(); // Отримайте всі тури з бази даних
+        return view('admin.reviews.create', compact('tours')); // Передайте $tours до шаблону
     }
 
     /**
@@ -35,26 +40,33 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+  
+
     public function store(Request $request)
     {
-
-        $request->validate([
-            'author' => 'required|string|min:2|max:32',
-            'comment' => 'required|string|min:5|max:255',
-            'rating' => 'required|integer|min:0|max:5',
-
-
+        $validatedData = $request->validate([
+            'comment' => 'required|string|max:255',
+            'rating' => 'required|integer|between:1,5',
+            'tour_id' => 'required|exists:tours,id',
         ]);
-        //створення нової моделі 
-        $review = new Review();
-        $review->author = $request->author;
-        $review->comment = $request->comment;
-        $review->rating = $request->rating;
+
+        // Створюємо новий об'єкт Review
+        $review = new Review($validatedData);
+
+        // Отримати ім'я користувача, який створив огляд
+        $review->author = auth()->user()->name;
+
+        // Встановлюємо користувача, що залишив відгук
+        $review->user_id = Auth::id();
+
         $review->save();
 
-
-        return redirect()->route('reviews.index');
+        return redirect()->route('tour.show', $review->tour); // Перенаправлення на сторінку туру
     }
+
+
+
+
 
     /**
      * Display the specified resource.

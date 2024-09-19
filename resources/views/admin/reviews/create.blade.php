@@ -28,6 +28,9 @@
 
                             </div>
 
+
+
+
                             <div class="mt-3">
                                 <label for="comment">Comment</label>
                                 <input type="text" name="comment" id="comment"
@@ -56,6 +59,15 @@
                                 @enderror
 
 
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tour_id">Tour:</label>
+                                <select class="form-control" id="tour_id" name="tour_id">
+                                    @foreach ($tours as $tour)
+                                        <option value="{{ $tour->id }}">{{ $tour->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="mt-3">

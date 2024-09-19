@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Tour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TourController extends Controller
 {
@@ -69,10 +70,23 @@ class TourController extends Controller
      * @param  \App\Models\Tour  $tour
      * @return \Illuminate\Http\Response
      */
+    // public function show(Tour $tour)
+    // {
+    //     // return view('tours.show', compact('tour'));
+    //     $tour = Tour::with('reviews')->find($tour->id);
+
+    //     return view('admin.tours.show', compact('tour')); // Правильний шлях до шаблону
+    // }
+
     public function show(Tour $tour)
     {
-        // return view('tours.show', compact('tour'));
-        return view('admin.tours.show', compact('tour')); // Правильний шлях до шаблону
+        if (Auth::check()) { // Перевірка авторизації
+            $tour = Tour::with('reviews')->find($tour->id);
+            return view('admin.tours.show', compact('tour'));
+        } else {
+            // Якщо користувач не авторизований, перенаправляємо на сторінку авторизації
+            return redirect()->route('login');
+        }
     }
 
     /**

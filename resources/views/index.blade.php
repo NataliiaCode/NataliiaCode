@@ -1,3 +1,5 @@
+{{-- @extends('templates.main') --}}
+
 @extends('templates.main')
 
 

@@ -29,6 +29,22 @@ class Tour extends Model
         return $this->belongsTo(Category::class);
     }
 
+    // Відношення до моделі Review
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    // Додайте цей аксесор, якщо ви не зберігаєте зображення безпосередньо в базі даних
+    // protected function image(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn ($value) => asset($value) ?: asset('images/nophoto.png'),
+    //     );
+    // }
+
+
+
 
     // protected function image(): Attribute
     // {

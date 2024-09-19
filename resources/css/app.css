@@ -1,0 +1,98 @@
+body {
+  margin: 0 auto;
+  /* background-color: #aae4ad; */
+  box-sizing: border-box;
+  color: #121a07;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.review p {
+  margin-bottom: 10px;
+}
+
+
+#main {
+  width: 600px;
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  padding-left: 10px;
+  margin-top: 100px;
+  border-top: 3px double #f1f1f1;
+  border-bottom: 3px double #f1f1f1;
+  padding-top: 20px;
+  background-color: #fff; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+#main table {
+  font-family: "Comic Sans MS", cursive;
+}
+
+#main .tb {
+  height: 35px; 
+  width: 100%; 
+  border: 1px solid #f26724;
+  color: #fd7838;
+  font-weight: bold;
+  
+  opacity: 0.9;
+  padding: 8px 12px; 
+  border-radius: 3px; 
+  margin-bottom: 10px; 
+}
+
+#main .tb:focus {
+  outline: none;
+  border: 5px solid #f7f7f7;
+  box-shadow: 0 0 5px rgba(242, 103, 36, 0.5); 
+}
+
+#main .btn {
+  width: 150px;
+  height: 38px; 
+  margin-top: 15px;
+  outline: none;
+  color: #f7f7f7;
+  font-weight: bold;
+  border: 0px solid #f26724;
+  text-shadow: 0px 0.5px 0.5px #fff;
+  border-radius: 3px; 
+  font-weight: 600;
+  color: #f26724;
+  letter-spacing: 1px;
+  font-size: 14px;
+  background-color: #f1f1f1;
+  transition: 1s; 
+  cursor: pointer; 
+}
+
+#main .btn:hover {
+  background-color: #f26724;
+  outline: none;
+  border-radius: 3px;
+  color: #f1f1f1;
+  border: 1px solid #f1f1f1;
+  transition: 1s; 
+}
+
+
+#main label {
+  font-weight: bold;
+  display: block; 
+  margin-bottom: 5px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.card-img-top {
+  max-height: 200px;
+  object-fit: cover;
+}
+

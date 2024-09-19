@@ -15,10 +15,15 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('author');
+            $table->unsignedBigInteger('user_id'); // Зв'язок з користувачем
+            $table->unsignedBigInteger('tour_id'); // Зв'язок з туром
             $table->text('comment');
             $table->integer('rating');
             $table->timestamps();
+
+            // Іноземні ключі, що забезпечують зв'язок
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('tour_id')->references('id')->on('tours')->onDelete('cascade');
         });
     }
 

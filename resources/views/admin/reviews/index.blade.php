@@ -11,6 +11,9 @@
                 <th scope="col">Author</th>
                 <th scope="col">Comment</th>
                 <th scope="col">Rating</th>
+                <th scope="col">Tour</th> <!-- Додаємо стовпець для туру -->
+
+
                 <th scope="col" class="text-center">Actions</th>
             </tr>
         </thead>
@@ -20,6 +23,18 @@
                     <td>{{ $review->author }}</td>
                     <td>{{ $review->comment }}</td>
                     <td>{{ $review->rating }}</td>
+
+                    <!-- Відображаємо назву туру -->
+                    <td>
+                        @if ($review->tour)
+                            <!-- Перевірка наявності туру -->
+                            {{ $review->tour->name }}
+                        @else
+                            N/A <!-- Якщо туру немає, показуємо "N/A" -->
+                        @endif
+                    </td>
+
+
                     <td class="d-flex justify-content-center align-items-center">
                         <a href="{{ route('reviews.edit', $review) }}" class="btn btn-warning btn-sm me-2">Edit</a>
                         <form action="{{ route('reviews.destroy', $review) }}" method="POST">

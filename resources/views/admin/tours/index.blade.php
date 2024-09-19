@@ -33,6 +33,7 @@
                     <td>{{ $tour->short_description }}</td>
                     <td>{{ $tour->category->name }}</td>
 
+
                     <td>{{ $tour->price }} $</td>
 
 

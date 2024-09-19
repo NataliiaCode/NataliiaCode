@@ -14,5 +14,20 @@ class Review extends Model
         'author',
         'comment',
         'rating',
+        'user_id',
+        'tour_id'
+
     ];
+
+
+    public function tour()
+    {
+        return $this->belongsTo(Tour::class);
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

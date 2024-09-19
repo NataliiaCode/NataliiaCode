@@ -21,8 +21,6 @@ class CreateToursTable extends Migration
             $table->integer('price');
             $table->string('image')->nulleable();
             $table->foreignId('category_id')->constrained('categories', 'id')->cascadeOnDelete();
-
-
         });
     }
 
